@@ -1,0 +1,29 @@
+{
+  "date": "2026-10-15",
+  "tests": {
+    "passed": 324,
+    "failed": 0
+  },
+  "typescript": "passed",
+  "eslint_blocking_errors": 0,
+  "production_build": {
+    "command": "node scripts/build-windows.cjs",
+    "exit_code": 0,
+    "static_pages": 94,
+    "next": "16.1.1"
+  },
+  "native_anonymous_routes": {
+    "passed": 8,
+    "external_ai_requests": 0
+  },
+  "original_sensitive_literals_checked": 5,
+  "original_sensitive_literals_remaining": 0,
+  "published": false,
+  "credential_revocation_verified": false,
+  "dependency_upgrade_completed": false,
+  "full_online_dependency_audit_completed": false,
+  "live_database_verified": false,
+  "live_ai_verified": false,
+  "browser_end_to_end_verified": false,
+  "preexisting_source_ownership_verified": false
+}

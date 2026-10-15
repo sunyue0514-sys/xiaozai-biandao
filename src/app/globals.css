@@ -1,0 +1,821 @@
+/* 引入 SF Pro 风格字体 - Plus Jakarta Sans 作为替代 */
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
+
+@import 'tailwindcss';
+@import 'tw-animate-css';
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  
+  /* 功能色 */
+  --color-success: var(--color-success);
+  --color-warning: var(--color-warning);
+  --color-danger: var(--color-danger);
+  --color-info: var(--color-info);
+  --color-creative: var(--color-creative);
+  --color-qianchuan: var(--color-qianchuan);
+  --color-feed: var(--color-feed);
+  --color-operation: var(--color-operation);
+  
+  /* 苹果风格圆角系统 */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
+  --radius-2xl: 24px;
+  --radius-3xl: 28px;
+  --radius-4xl: 32px;
+  
+  /* 字体 - SF Pro 风格 */
+  --font-sans: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", "PingFang SC", "Microsoft YaHei", sans-serif;
+  --font-mono: "SF Mono", SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  --font-serif: "Noto Serif SC", "Songti SC", ui-serif, Georgia, serif;
+  
+  /* 苹果风格阴影系统 - 极淡、柔和 */
+  --shadow-2xs: 0 1px 2px rgba(0, 0, 0, 0.02);
+  --shadow-xs: 0 1px 3px rgba(0, 0, 0, 0.03);
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.04);
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 40px rgba(0, 0, 0, 0.08);
+  --shadow-xl: 0 20px 60px rgba(0, 0, 0, 0.10);
+  --shadow-2xl: 0 32px 80px rgba(0, 0, 0, 0.12);
+  
+  /* 功能色 - 用于不同模块 */
+  --color-success: #34C759;
+  --color-warning: #FF9500;
+  --color-danger: #FF3B30;
+  --color-info: #5AC8FA;
+  --color-creative: #AF52DE;
+  --color-qianchuan: #FF9500;
+  --color-feed: #5856D6;
+  --color-operation: #5AC8FA;
+  
+  /* 动效时长 */
+  --duration-instant: 100ms;
+  --duration-fast: 150ms;
+  --duration-normal: 200ms;
+  --duration-slow: 300ms;
+  --duration-slower: 400ms;
+  
+  /* 缓动曲线 */
+  --ease-default: cubic-bezier(0.25, 0.1, 0.25, 1);
+  --ease-in: cubic-bezier(0.4, 0, 1, 1);
+  --ease-out: cubic-bezier(0, 0, 0.2, 1);
+  --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+:root {
+  /* 背景 - 苹果标志性浅灰 */
+  --background: #F5F5F7;
+  --foreground: #1D1D1F;
+  
+  /* 卡片 */
+  --card: #FFFFFF;
+  --card-foreground: #1D1D1F;
+  
+  /* 弹出层 */
+  --popover: #FFFFFF;
+  --popover-foreground: #1D1D1F;
+  
+  /* 主色调 - 苹果蓝 */
+  --primary: #007AFF;
+  --primary-foreground: #FFFFFF;
+  
+  /* 次要色 */
+  --secondary: #F5F5F7;
+  --secondary-foreground: #1D1D1F;
+  
+  /* 柔和色 */
+  --muted: #F5F5F7;
+  --muted-foreground: #636366; /* 修复对比度：从 #86868B 改为 #636366，确保 WCAG AA 标准 */
+  
+  /* 强调色 */
+  --accent: #E8F4FD;
+  --accent-foreground: #007AFF;
+  
+  /* 危险色 */
+  --destructive: #FF3B30;
+  
+  /* 边框和输入框 */
+  --border: #D2D2D7;
+  --input: #D2D2D7;
+  --ring: #007AFF;
+  
+  /* CTA行动色 - 苹果绿 */
+  --cta: #34C759;
+  --cta-foreground: #FFFFFF;
+  
+  /* 功能辅助色（用于不同模块图标） */
+  --color-creative: #AF52DE;
+  --color-operation: #5AC8FA;
+  --color-qianchuan: #FF9500;
+  --color-feed: #5856D6;
+  
+  /* 图表色系 */
+  --chart-1: #007AFF;
+  --chart-2: #34C759;
+  --chart-3: #FF9500;
+  --chart-4: #AF52DE;
+  --chart-5: #5AC8FA;
+  
+  /* 侧边栏 */
+  --sidebar: #FFFFFF;
+  --sidebar-foreground: #1D1D1F;
+  --sidebar-primary: #007AFF;
+  --sidebar-primary-foreground: #FFFFFF;
+  --sidebar-accent: #E8F4FD;
+  --sidebar-accent-foreground: #007AFF;
+  --sidebar-border: #D2D2D7;
+  --sidebar-ring: #007AFF;
+  
+  /* 圆角 */
+  --radius: 12px;
+}
+
+.dark {
+  --background: #000000;
+  --foreground: #F5F5F7;
+  --card: #1C1C1E;
+  --card-foreground: #F5F5F7;
+  --popover: #1C1C1E;
+  --popover-foreground: #F5F5F7;
+  --primary: #0A84FF;
+  --primary-foreground: #000000;
+  --secondary: #2C2C2E;
+  --secondary-foreground: #F5F5F7;
+  --muted: #2C2C2E;
+  --muted-foreground: #8E8E93;
+  --accent: #2C2C2E;
+  --accent-foreground: #0A84FF;
+  --destructive: #FF453A;
+  --border: #38383A;
+  --input: #38383A;
+  --ring: #0A84FF;
+  --chart-1: #0A84FF;
+  --chart-2: #30D158;
+  --chart-3: #FF9F0A;
+  --chart-4: #BF5AF2;
+  --chart-5: #64D2FF;
+  --sidebar: #1C1C1E;
+  --sidebar-foreground: #F5F5F7;
+  --sidebar-primary: #0A84FF;
+  --sidebar-primary-foreground: #000000;
+  --sidebar-accent: #2C2C2E;
+  --sidebar-accent-foreground: #0A84FF;
+  --sidebar-border: #38383A;
+  --sidebar-ring: #0A84FF;
+}
+
+@custom-variant dark (&:is(.dark *));
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+/* ========================================
+   苹果风格全局样式
+   ======================================== */
+
+/* 卡片悬停浮起效果 */
+.card-hover {
+  @apply transition-all duration-200 ease-out;
+}
+
+.card-hover:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+}
+
+/* 按钮点击效果 */
+.btn-press {
+  @apply transition-transform duration-150 ease-out;
+}
+
+.btn-press:active {
+  transform: scale(0.98);
+}
+
+/* 淡入动画 */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in {
+  animation: fadeIn 200ms cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+/* 滑入动画 */
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.slide-in {
+  animation: slideIn 200ms cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+/* 缩放动画 */
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.scale-in {
+  animation: scaleIn 200ms cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+/* 苹果风格滚动条 */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #C7C7CC;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #A1A1A6;
+}
+
+/* 选中文本颜色 */
+::selection {
+  background: #007AFF;
+  color: #FFFFFF;
+}
+
+/* 聚焦环样式 */
+.focus-ring {
+  @apply outline-none ring-2 ring-primary/30 ring-offset-2 ring-offset-background;
+}
+
+/* 玻璃态效果（用于浮动元素） */
+.glass {
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: saturate(180%) blur(20px);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+}
+
+.dark .glass {
+  background: rgba(28, 28, 30, 0.72);
+}
+
+/* Bento Grid 布局辅助类 */
+.bento-grid {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+
+.bento-grid-sm {
+  display: grid;
+  gap: 12px;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+
+/* 苹果风格分割线 */
+.divider {
+  height: 1px;
+  background: #D2D2D7;
+  border: none;
+}
+
+/* 苹果风格标签 */
+.apple-tag {
+  @apply inline-flex items-center px-3 py-1 rounded-full text-xs font-medium;
+  background: #F5F5F7;
+  color: #1D1D1F;
+}
+
+/* 苹果风格按钮基础样式 */
+.apple-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 1rem;
+  border-radius: 12px;
+  font-weight: 500;
+  transition: all 200ms cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+.apple-button:active {
+  transform: scale(0.98);
+}
+
+.apple-button-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 1rem;
+  border-radius: 12px;
+  font-weight: 500;
+  transition: all 200ms cubic-bezier(0.25, 0.1, 0.25, 1);
+  background: var(--primary);
+  color: white;
+}
+
+.apple-button-primary:active {
+  transform: scale(0.98);
+}
+
+.apple-button-primary:hover {
+  filter: brightness(1.1);
+}
+
+.apple-button-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 1rem;
+  border-radius: 12px;
+  font-weight: 500;
+  transition: all 200ms cubic-bezier(0.25, 0.1, 0.25, 1);
+  background: var(--secondary);
+  color: var(--foreground);
+}
+
+.apple-button-secondary:active {
+  transform: scale(0.98);
+}
+
+.apple-button-secondary:hover {
+  background: #E8E8ED;
+}
+
+/* ========================================
+   微交互效果系统
+   ======================================== */
+
+/* 点击缩放效果 */
+.interactive-scale {
+  transition: transform 150ms cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+.interactive-scale:active {
+  transform: scale(0.97);
+}
+
+/* 悬停浮起效果 */
+.interactive-float {
+  transition: transform 200ms ease-out, box-shadow 200ms ease-out;
+}
+
+.interactive-float:hover {
+  transform: translateY(-2px);
+}
+
+/* 悬停发光效果 */
+.interactive-glow {
+  transition: box-shadow 200ms ease-out;
+}
+
+.interactive-glow:hover {
+  box-shadow: 0 0 0 3px var(--primary), 0 0 20px rgba(0, 122, 255, 0.2);
+}
+
+/* 标签切换效果 */
+.tag-interactive {
+  @apply transition-all duration-150 ease-out cursor-pointer;
+}
+
+.tag-interactive:hover {
+  @apply bg-muted;
+}
+
+.tag-interactive.active {
+  @apply bg-primary text-white;
+}
+
+/* 输入框聚焦动画 */
+.input-animated {
+  @apply transition-all duration-200 ease-out;
+}
+
+.input-animated:focus {
+  @apply ring-2 ring-primary/30;
+  border-color: var(--primary);
+}
+
+/* 列表项入场动画 */
+@keyframes listItemIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.list-item-enter {
+  animation: listItemIn 200ms cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* 交错动画延迟 */
+.stagger-1 { animation-delay: 50ms; }
+.stagger-2 { animation-delay: 100ms; }
+.stagger-3 { animation-delay: 150ms; }
+.stagger-4 { animation-delay: 200ms; }
+.stagger-5 { animation-delay: 250ms; }
+.stagger-6 { animation-delay: 300ms; }
+
+/* 脉冲加载效果 */
+@keyframes pulse-soft {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.6;
+  }
+}
+
+.pulse-soft {
+  animation: pulse-soft 1.5s ease-in-out infinite;
+}
+
+/* 弹跳效果 */
+@keyframes bounce-soft {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-4px);
+  }
+}
+
+.bounce-soft {
+  animation: bounce-soft 1s ease-in-out infinite;
+}
+
+/* 旋转加载 */
+@keyframes spin-slow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.spin-slow {
+  animation: spin-slow 1.5s linear infinite;
+}
+
+/* 渐变背景动画 */
+@keyframes gradient-shift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.gradient-animate {
+  background-size: 200% 200%;
+  animation: gradient-shift 3s ease infinite;
+}
+
+/* 减少动画偏好支持 */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  
+  .card-hover:hover,
+  .interactive-float:hover {
+    transform: none;
+  }
+}
+
+/* ========================================
+   状态反馈样式
+   ======================================== */
+
+/* 成功状态 */
+.state-success {
+  @apply bg-success/10 text-success border-success/20;
+}
+
+/* 警告状态 */
+.state-warning {
+  @apply bg-warning/10 text-warning border-warning/20;
+}
+
+/* 错误状态 */
+.state-error {
+  @apply bg-danger/10 text-danger border-danger/20;
+}
+
+/* 信息状态 */
+.state-info {
+  @apply bg-info/10 text-info border-info/20;
+}
+
+/* 加载状态遮罩 */
+.loading-overlay {
+  @apply absolute inset-0 bg-background/80 backdrop-blur-sm flex items-center justify-center z-10;
+}
+
+/* 骨架屏闪烁效果 */
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.skeleton-shimmer {
+  background: linear-gradient(
+    90deg,
+    rgba(0, 0, 0, 0.05) 25%,
+    rgba(0, 0, 0, 0.1) 50%,
+    rgba(0, 0, 0, 0.05) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s ease-in-out infinite;
+}
+
+/* 工具提示样式 */
+.tooltip-apple {
+  @apply px-3 py-1.5 text-xs font-medium rounded-lg shadow-lg;
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+}
+
+/* 徽章动画 */
+@keyframes badge-pop {
+  0% {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.badge-pop {
+  animation: badge-pop 200ms cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* ========================================
+   可访问性增强样式
+   ======================================== */
+
+/* 屏幕阅读器专用类 */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* 获得焦点时显示 */
+.sr-only:focus-within:not(:focus) {
+  position: absolute;
+  width: auto;
+  height: auto;
+  padding: 0;
+  margin: 0;
+  overflow: visible;
+  clip: auto;
+  white-space: normal;
+}
+
+/* 跳过链接样式 */
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  padding: 8px 16px;
+  background: var(--primary);
+  color: white;
+  text-decoration: none;
+  border-radius: 0 0 8px 0;
+  z-index: 9999;
+  transition: top 150ms ease-out;
+}
+
+.skip-link:focus {
+  top: 0;
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
+/* 增强焦点环样式 */
+.focus-visible-ring {
+  outline: none;
+}
+
+.focus-visible-ring:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* 按钮焦点样式 */
+.btn-focus {
+  transition: outline-offset 150ms ease-out;
+}
+
+.btn-focus:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
+/* 链接焦点样式 */
+a:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* 表单控件焦点样式 */
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+  border-color: var(--primary);
+}
+
+/* 高对比度模式支持 */
+@media (prefers-contrast: high) {
+  :root {
+    --border: #000000;
+    --muted-foreground: #000000;
+  }
+  
+  .dark {
+    --border: #FFFFFF;
+    --muted-foreground: #FFFFFF;
+  }
+  
+  button, a, input, select, textarea {
+    border-width: 2px;
+  }
+}
+
+/* 强制颜色模式（如 Windows 高对比度） */
+@media (forced-colors: active) {
+  .btn-press:active {
+    transform: none;
+    outline: 3px solid Highlight;
+  }
+  
+  .card-hover:hover {
+    transform: none;
+    outline: 2px solid Highlight;
+  }
+}
+
+/* ==================== 打印样式 ==================== */
+
+/* 打印模式 - 隐藏其他元素 */
+body.print-mode {
+  background: white !important;
+}
+
+body.print-mode * {
+  visibility: hidden !important;
+  opacity: 0 !important;
+}
+
+body.print-mode .print-target,
+body.print-mode .print-target * {
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+body.print-mode .print-target {
+  background: white !important;
+}
+
+@media print {
+  /* 页面设置 */
+  @page {
+    margin: 12mm;
+    size: A4 portrait;
+  }
+  
+  /* 打印模式下只显示目标区域 */
+  body.print-mode * {
+    visibility: hidden !important;
+  }
+  
+  body.print-mode .print-target,
+  body.print-mode .print-target * {
+    visibility: visible !important;
+  }
+  
+  /* 确保颜色正确打印 */
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    color-adjust: exact !important;
+  }
+  
+  /* 卡片不被分页截断 */
+  .card {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+}
+
+/* 打印时的body类样式 */
+body.printing {
+  /* 隐藏不需要打印的元素 */
+}
+
+body.printing .no-print,
+body.printing nav,
+body.printing aside,
+body.printing header,
+body.printing button,
+body.printing [role="button"],
+body.printing .fixed,
+body.printing .sticky {
+  display: none !important;
+}
